@@ -1,0 +1,12 @@
+Observations:
+
+    When a local user is added or removed from a local or global security group, the user is incorrectly assigned as a MemberName due to improper resolution or translation of the account name.
+    After making changes to the parameters below, Splunk alerts were triggered:
+        dest_user != "-" was changed to dest_user = "-".
+        nt_domain IN ("EUR", "AME") was changed to rc_nt_domain IN ("EUR", "AST", "AME").
+    Splunk queries are excluding the detection of improper resolution or translation of the account name, which bypasses the intended detection mechanism for local user creation or removal from security-enabled local, global, or universal groups.
+
+Reason for Failures:
+
+    The system is unable to detect when a local user is added or removed from a security group because the user is incorrectly assigned as a MemberName due to improper resolution or translation of the account name.
+    Due to the exclusion of dest_user != "-", Splunk queries are not able to detect the alerts related to local user changes.
