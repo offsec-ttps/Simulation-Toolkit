@@ -40,16 +40,14 @@ Reasons for Failures:
     Logon Type Mismatch:
         During RBCD exploitation, logon type = 9 is generated, but the signature currently uses logon type = 3, causing a mismatch. This needs to be fixed in the signature for proper detection.
 
-Recommendations:
+ Recommendations:
+Monitor Kerberos Authentication Events: Track Kerberos-related event IDs, such as:
 
- -   Look for Kerberos-related event IDs, such as:
-        Event ID 4768: A Kerberos authentication ticket (TGT) request was made.
-        Event ID 4769: A Kerberos service ticket request was made.
-        Event ID 4770: A Kerberos service ticket renewal request was made.
+Event ID 4768: A Kerberos authentication ticket (TGT) request was made.
+Event ID 4769: A Kerberos service ticket request was made.
+Event ID 4770: A Kerberos service ticket renewal request was made.
+Enable LDAP Security Features: Microsoft recommends configuring LDAP signing and LDAP channel binding to prevent certain attacks. Implement the following:
 
-- Microsoft recommends that administrators configure LDAP signing and LDAP channel binding to prevent from this attack.
--     KB935834: Enable LDAP signing
-    KB4034879: Enable LDAP channel binding 
-
--  To enhance security, organizations should set the ms-DS-MachineAccountQuota attribute to 0. This prevents non-admin users from adding new devices to the domain, blocking the first step of certain attacks and forcing attackers to use more complex methods to gain access.
-
+KB935834: Enable LDAP signing.
+KB4034879: Enable LDAP channel binding.
+Set ms-DS-MachineAccountQuota to 0: Prevent non-admin users from adding new devices to the domain by setting the ms-DS-MachineAccountQuota attribute to 0, reducing the risk of unauthorized device additions.
