@@ -1,1 +1,2 @@
 *.psd filter=lfs diff=lfs merge=lfs -text
+Binary-Helpers/new_04.mp4 filter=lfs diff=lfs merge=lfs -text
